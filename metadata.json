@@ -19,6 +19,6 @@
     }
   ],
   "dependencies": [
-
+    { "name": "puppetlabs/netdev_stdlib", "version_requirement": ">= 0.11.0" }
   ]
 }
