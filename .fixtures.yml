@@ -1,0 +1,5 @@
+fixtures:
+  symlinks:
+    "huaweipuppet": "#{source_dir}"
+  repositories:
+    "netdev_stdlib": "git://github.com/puppetlabs/netdev_stdlib.git"
