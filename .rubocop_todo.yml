@@ -31,28 +31,39 @@ Lint/DefEndAlignment:
 Lint/EndAlignment:
   Enabled: false
 
+Lint/HandleExceptions:
+  Exclude:
+    - 'rake'
+    - 'rdoc'
+    - 'ri'
+
+Lint/NestedMethodDefinition:
+  Enabled: false
+
+Lint/RescueException:
+  Exclude:
+    - 'rdoc'
+
 # Offense count: 2
 Lint/UselessAssignment:
-  Exclude:
-    - 'Puppet-master/lib/puppet/provider/ce/api/l3_interface/l3_interface_api.rb'
-    - 'Puppet-master/lib/puppet/provider/ce/api/trunk/trunk_api.rb'
+  Enabled: false
 
 # Offense count: 19
 Metrics/AbcSize:
-  Max: 108
+  Max: 200
 
 # Offense count: 1
 Metrics/BlockNesting:
-  Max: 4
+  Enabled: false
 
 # Offense count: 2
 # Configuration parameters: CountComments.
 Metrics/ClassLength:
-  Max: 125
+  Enabled: false
 
 # Offense count: 10
 Metrics/CyclomaticComplexity:
-  Max: 27
+  Max: 50
 
 # Offense count: 119
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes.
@@ -63,39 +74,42 @@ Metrics/LineLength:
 # Offense count: 15
 # Configuration parameters: CountComments.
 Metrics/MethodLength:
-  Max: 75
+  Max: 200
+  
+Metrics/ModuleLength:
+  Max: 135
 
 # Offense count: 10
 Metrics/PerceivedComplexity:
-  Max: 15
+  Max: 50
 
 # Offense count: 25
 Style/AccessorMethodName:
+  Enabled: false
+
+Style/AndOr:
   Exclude:
-    - 'Puppet-master/lib/puppet/provider/ce/api/car/car_api.rb'
-    - 'Puppet-master/lib/puppet/provider/ce/api/interface/interface_api.rb'
-    - 'Puppet-master/lib/puppet/provider/ce/api/l3_interface/l3_interface_api.rb'
-    - 'Puppet-master/lib/puppet/provider/ce/api/port_channel/channel_api.rb'
-    - 'Puppet-master/lib/puppet/provider/ce/api/system/system_api.rb'
-    - 'Puppet-master/lib/puppet/provider/ce/api/trunk/trunk_api.rb'
-    - 'Puppet-master/lib/puppet/provider/ce/api/user/user_api.rb'
-    - 'Puppet-master/lib/puppet/provider/ce/api/vlan/vlan_api.rb'
-    - 'Puppet-master/lib/puppet/provider/ce/device/device.rb'
-    - 'Puppet-master/lib/puppet/provider/ce/device_ssh/device_ssh.rb'
-    - 'Puppet-master/lib/puppet/provider/ce/device_tel/device_tel.rb'
+    - 'erb'
+
+Style/BlockDelimiters:
+  Exclude:
+    - 'erb'
+
+Style/CaseEquality:
+  Exclude:
+    - 'rdoc'
+
+Style/CharacterLiteral:
+  Exclude:
+    - 'erb'
 
 # Offense count: 2
 Style/ClassAndModuleCamelCase:
-  Exclude:
-    - 'Puppet-master/lib/puppet/provider/ce/api/command_ssh/command_ssh_api.rb'
-    - 'Puppet-master/lib/puppet/provider/ce/api/command_telnet/command_telnet_api.rb'
+  Enabled: false
 
 # Offense count: 52
 Style/ClassVars:
-  Exclude:
-    - 'Puppet-master/lib/puppet/provider/ce/device/device.rb'
-    - 'Puppet-master/lib/puppet/provider/ce/device_ssh/device_ssh.rb'
-    - 'Puppet-master/lib/puppet/provider/ce/device_tel/device_tel.rb'
+  Enabled: false
 
 # Offense count: 19
 Style/Documentation:
@@ -107,8 +121,67 @@ Style/Documentation:
 Style/For:
   Enabled: false
 
+Style/FormatString:
+  Exclude:
+    - 'erb'
+
+Style/GuardClause:
+  Enabled: false
+ 
+Style/GlobalVars:
+  Exclude:
+    - 'rdoc'
+    
 # Offense count: 2
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 # SupportedStyles: snake_case, camelCase
 Style/VariableName:
   Enabled: false
+
+Style/IfUnlessModifier:
+  Exclude:
+    - 'erb'
+  LineLength:
+    Max: 800
+
+Style/MultilineIfThen:
+  Exclude:
+    - 'gem'
+    - 'rdoc'
+
+Style/MultilineOperationIndentation:
+  Enabled: false
+  
+Style/ParallelAssigment:
+  Exclude:
+    - 'erb'
+
+Style/PelBackrefs:
+  Exclude:
+    - 'erb'
+
+Style/SpaceAroundEqualsInParameterDefault:
+  Enabled: false
+ 
+Style/SpaceAroundOperators:
+  Exclude:
+    - 'erb' 
+
+Style/SpecialGlobalVars:
+  EnforcedStyle: use_perl_names
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/TrailingBlankLines:
+  Exclude:
+    - 'gem'
+    - 'rdoc'
+
+Style/UnneededInterpolation:
+  Exclude:
+    - 'rdoc' 
+
+Style/ZeroLengthPredicate:
+  Exclude:
+    - 'erb' 

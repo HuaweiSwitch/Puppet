@@ -16,16 +16,16 @@ module Puppet
         def command_telnet(resource)
           session = Puppet::NetDev::CE::Device.telnet_session
 
-          myFile = File.open('/tmp/hello.txt', 'a')
+          myfile = File.open('/tmp/hello.txt', 'a')
           t = Time.now
           format = '%Y-%m-%d %H:%M:%S'
-          myFile.puts t.strftime(format)
+          myfile.puts t.strftime(format)
 
           for i in 0..resource[:command].count - 1 do
-            session.cmd('String' => resource[:command][i], 'Match' => /.*/, 'Timeout' => 5) { |c| myFile.puts c }
+            session.cmd('String' => resource[:command][i], 'Match' => /.*/, 'Timeout' => 5) { |c| myfile.puts c }
           end
           session.cmd('String' => 'q', 'Match' => /.*>/, 'Timeout' => 5) { |c| }
-          myFile.close
+          myfile.close
           end
       end
     end

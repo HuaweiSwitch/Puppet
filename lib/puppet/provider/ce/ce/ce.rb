@@ -9,7 +9,7 @@ class Puppet::Provider::CE < Puppet::Provider
 
   def self.prefetch(resources)
     instances.each do |prov|
-      if resource = resources[prov.name]
+      if resource == resources[prov.name]
         resource.provider = prov
       end
     end

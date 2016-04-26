@@ -22,6 +22,18 @@ Puppet::Type.type(:network_vlan).provide(:ce, parent: Puppet::Provider::CE) do
 
     array
   end
+  
+  def initialize(resources)
+    super(resources)
+  end
+
+  def self.prefetch(resources)
+    instances.each do |prov|
+      if resource = resources[prov.name]
+        resource.provider = prov
+      end
+    end
+  end
 
   def flush
     return unless exists?
