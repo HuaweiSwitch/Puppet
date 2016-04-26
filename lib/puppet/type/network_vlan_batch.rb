@@ -16,7 +16,7 @@ Puppet::Type.newtype(:network_vlan_batch) do
     validate do |value|
       case value
       when String then super(value)
-      else fail "value #{value.inspect} is invalid, must be a String."
+      else raise "value #{value.inspect} is invalid, must be a String."
       end
     end
   end
@@ -25,25 +25,23 @@ Puppet::Type.newtype(:network_vlan_batch) do
 
   newproperty(:vlan_start) do
     desc 'The VLAN batch start ID, e.g. 100'
-	
+
     validate do |value|
-	  value = Integer(value)
+      value = Integer(value)
       unless value.between?(1, 4095)
-        fail "value #{value.inspect} is not between 1 and 4095"
+        raise "value #{value.inspect} is not between 1 and 4095"
       end
     end
   end
-  
-   newproperty(:vlan_end) do
+
+  newproperty(:vlan_end) do
     desc 'The VLAN batch end ID, e.g. 200'
-	
+
     validate do |value|
-	  value = Integer(value)
+      value = Integer(value)
       unless value.between?(1, 4095)
-        fail "value #{value.inspect} is not between 1 and 4095"
+        raise "value #{value.inspect} is not between 1 and 4095"
       end
     end
-   end
-
+  end
 end
-

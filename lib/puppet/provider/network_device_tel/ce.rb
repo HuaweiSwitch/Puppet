@@ -4,21 +4,17 @@ require 'puppet/provider/ce/api/apibase.rb'
 require 'puppet/provider/ce/session/session.rb'
 require 'puppet/provider/ce/ce/ce.rb'
 
-Puppet::Type.type(:network_device_tel).provide(:ce, :parent => Puppet::Provider::CE) do
-
+Puppet::Type.type(:network_device_tel).provide(:ce, parent: Puppet::Provider::CE) do
   mk_resource_methods
 
   def self.instances
-  	array = []
-  	return array
+    array = []
+    array
   end
-  
-  def flush()		
-	
-	Puppet::NetDev::CE::Device.set_telnet_ip(resource[:telip])
-	Puppet::NetDev::CE::Device.set_telnet_username(resource[:teluser])
-	Puppet::NetDev::CE::Device.set_telnet_password(resource[:telpass])
-	
+
+  def flush
+    Puppet::NetDev::CE::Device.set_telnet_ip(resource[:telip])
+    Puppet::NetDev::CE::Device.set_telnet_username(resource[:teluser])
+    Puppet::NetDev::CE::Device.set_telnet_password(resource[:telpass])
   end
-  
 end

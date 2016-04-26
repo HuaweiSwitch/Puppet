@@ -3,19 +3,15 @@ require 'net/netconf'
 
 # Puppet namespace
 module Puppet
-  #NetDev namespace
+  # NetDev namespace
   module NetDev
-	#CE namespace
-	module CE
-
-	  class ApiBase
-		def initialize()
-		  #do nothing
-		end
-      end
-		
-	end
+    # CE namespace
+    module CE
+      class ApiBase
+        def initialize
+          # do nothing
+        end
+     end
+    end
   end
-end    
-
-
+end

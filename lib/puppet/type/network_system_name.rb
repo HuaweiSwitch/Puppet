@@ -5,7 +5,7 @@ Puppet::Type.newtype(:network_system_name) do
 
   apply_to_all
 
-  # Parameters 
+  # Parameters
 
   newparam(:name, namevar: true) do
     desc 'System Name, e.g. CE5850-1'
@@ -13,23 +13,22 @@ Puppet::Type.newtype(:network_system_name) do
     validate do |value|
       case value
       when String then super(value)
-      else fail "value #{value.inspect} is invalid, must be a String."
+      else raise "value #{value.inspect} is invalid, must be a String."
       end
     end
   end
 
-  # Properties 
+  # Properties
   newproperty(:system_name) do
     desc 'The system name'
-  
+
     validate do |value|
       case value
       when String
         super(value)
         validate_features_per_value(value)
-      else fail "value #{value.inspect} is invalid, must be a string."
+      else raise "value #{value.inspect} is invalid, must be a string."
       end
     end
-  end 
-  
+  end
 end

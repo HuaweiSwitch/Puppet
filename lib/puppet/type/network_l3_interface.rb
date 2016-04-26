@@ -5,9 +5,8 @@ Puppet::Type.newtype(:network_l3_interface) do
 
   apply_to_all
   ensurable
-  
-  
-  # Parameters 
+
+  # Parameters
 
   newparam(:name, namevar: true) do
     desc 'Interface Name, e.g. Vlanif1'
@@ -15,19 +14,19 @@ Puppet::Type.newtype(:network_l3_interface) do
     validate do |value|
       case value
       when String then super(value)
-      else fail "value #{value.inspect} is invalid, must be a String."
+      else raise "value #{value.inspect} is invalid, must be a String."
       end
     end
   end
 
-  # Properties 
-  
+  # Properties
+
   newproperty(:enable) do
     desc 'Enable the interface, true or false'
-	
+
     newvalues(:true, :false)
   end
-  
+
   newproperty(:description) do
     desc 'Interface description'
 
@@ -36,11 +35,11 @@ Puppet::Type.newtype(:network_l3_interface) do
       when String
         super(value)
         validate_features_per_value(value)
-      else fail "value #{value.inspect} is invalid, must be a string."
+      else raise "value #{value.inspect} is invalid, must be a string."
       end
     end
   end
-  
+
   newproperty(:ipaddress) do
     desc 'Interface IP address'
 
@@ -49,9 +48,8 @@ Puppet::Type.newtype(:network_l3_interface) do
       when String
         super(value)
         validate_features_per_value(value)
-      else fail "value #{value.inspect} is invalid, must be a string."
+      else raise "value #{value.inspect} is invalid, must be a string."
       end
     end
   end
-
 end
