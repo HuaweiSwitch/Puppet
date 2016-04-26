@@ -16,16 +16,16 @@ module Puppet
 
         def command_ssh(resource)
           session = Puppet::NetDev::CE::Device.ssh_session
-          myFile = File.open('/tmp/hello.txt', 'a')
+          myfile = File.open('/tmp/hello.txt', 'a')
           t = Time.now
           format = '%Y-%m-%d %H:%M:%S'
-          myFile.puts t.strftime(format)
+          myfile.puts t.strftime(format)
 
           for i in 0..resource[:command].count - 1 do
             session.write(resource[:command][i] + "\n")
-            session.waitfor('Match' => /<>/, 'Timeout' => 5) { |c| myFile.puts c }
+            session.waitfor('Match' => /<>/, 'Timeout' => 5) { |c| myfile.puts c }
           end
-          myFile.close
+          myfile.close
           end
       end
     end
