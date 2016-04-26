@@ -130,8 +130,6 @@ module Puppet
               delete_out_rule_xml = '<rpc><edit-config><target><running/></target><default-operation>merge</default-operation><error-option>rollback-on-error</error-option><config><qos xmlns="http://www.huawei.com/netconf/vrp" content-version="1.0" format-version="1.0"><qosDss><qosDs><dsName>' + (resource[:name]).to_s + '</dsName><qosPhbs><qosPhb operation="delete"><phbType>' + phb_type + '</phbType><serviceClass>' + service_class + '</serviceClass><color>' + color + '</color></qosPhb></qosPhbs></qosDs></qosDss></qos></config></edit-config></rpc>'
               session.rpc.do_config(delete_out_rule_xml)
             end
-          end
-        end
       
         # (4)check if each new rule is in the old rules set, if not, new rule should be created. should notice direction(inbound/outbound) when creating new rule
         diffserv_array_new.each do |new_rule|
@@ -167,8 +165,6 @@ module Puppet
           session.rpc.do_config(create_out_rule_xml)
         end
       end
-    end
-  end
 
     def create_diffserv(resource)
     
@@ -191,5 +187,5 @@ module Puppet
   end
   
   end
- end
+  end
 end
