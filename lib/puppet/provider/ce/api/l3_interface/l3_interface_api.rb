@@ -135,18 +135,18 @@ module Puppet
         def create_l3_interface(resource)
           session = Puppet::NetDev::CE::Device.session
 
-          create_interface_xml = '<rpc><edit-config><target><running/></target><default-operation>merge</default-operation><error-option>rollback-on-error</error-option><config><ifm xmlns="http://www.huawei.com/netconf/vrp" content-version="1.0" format-version="1.0"><interfaces><interface operation="create"><ifName>' + (resource[:name]).to_s + '</ifName></interface></interfaces></ifm></config></edit-config></rpc>'
+          create_l3_interface_xml = '<rpc><edit-config><target><running/></target><default-operation>merge</default-operation><error-option>rollback-on-error</error-option><config><ifm xmlns="http://www.huawei.com/netconf/vrp" content-version="1.0" format-version="1.0"><interfaces><interface operation="create"><ifName>' + (resource[:name]).to_s + '</ifName></interface></interfaces></ifm></config></edit-config></rpc>'
           
-          session.rpc.do_config(create_interface_xml)
+          session.rpc.do_config(create_l3_interface_xml)
           
         end
         
         def delete_l3_interface(resource)
           session = Puppet::NetDev::CE::Device.session
 
-          delete_interface_xml = '<rpc><edit-config><target><running/></target><default-operation>merge</default-operation><error-option>rollback-on-error</error-option><config><ifm xmlns="http://www.huawei.com/netconf/vrp" content-version="1.0" format-version="1.0"><interfaces><interface operation="delete"><ifName>' + (resource[:name]).to_s + '</ifName></interface></interfaces></ifm></config></edit-config></rpc>'
+          delete_l3_interface_xml = '<rpc><edit-config><target><running/></target><default-operation>merge</default-operation><error-option>rollback-on-error</error-option><config><ifm xmlns="http://www.huawei.com/netconf/vrp" content-version="1.0" format-version="1.0"><interfaces><interface operation="delete"><ifName>' + (resource[:name]).to_s + '</ifName></interface></interfaces></ifm></config></edit-config></rpc>'
           
-          session.rpc.do_config(delete_interface_xml)
+          session.rpc.do_config(delete_l3_interface_xml)
           
         end
       end
