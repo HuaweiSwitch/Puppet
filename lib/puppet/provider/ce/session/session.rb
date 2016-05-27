@@ -1,7 +1,7 @@
 # encoding: utf-8
 require 'net/netconf'
 require 'net/telnet'
-require_relative '/opt/puppetlabs/puppet/lib/ruby/gems/2.1.0/gems/net-ssh-2.9.2/lib/net/ssh/Stelnet-common.rb'
+require 'net/Stelnet-common'
 # puppet namespace
 module Puppet
   # NetDev namespace
