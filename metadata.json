@@ -2,12 +2,12 @@
   "name": "puppetlabs-huawei_puppet",
   "version": "0.1.0",
   "author": "Makyo",
-  "summary": "Huawei Puppet types and provides for CE devices",
+  "summary": "Huawei Puppet types and providers for CE devices",
   "license": "Apache-2.0",
   "source": "https://github.com/HuaweiSwitch/Puppet",
   "project_page": "https://github.com/HuaweiSwitch",
   "issues_url": null,
-  "description": "Huawei Puppet types and provides for CE devices",
+  "description": "Huawei Puppet types and providers for CE devices",
   "requirements": [
     {
       "name": "pe",
