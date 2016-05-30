@@ -1,14 +1,24 @@
 {
-  "name": "puppetlabs_netdev_stdlib_ce",
-  "version": "1.6.1",
+  "name": "puppetlabs-huawei_puppet",
+  "version": "0.1.0",
   "author": "Makyo",
-  "summary": "ce netdev module",
-  "license": "NA",
-  "source": "",
+  "summary": "Huawei Puppet types and provides for CE devices",
+  "license": "Apache-2.0",
+  "source": "https://github.com/HuaweiSwitch/Puppet",
   "project_page": "https://github.com/HuaweiSwitch",
   "issues_url": null,
-  "description": "ce netdev module",
+  "description": "Huawei Puppet types and provides for CE devices",
+  "requirements": [
+    {
+      "name": "pe",
+      "version_requirement": ">= 3.4.0"
+    },
+    {
+      "name": "puppet",
+      "version_requirement": ">= 3.4.0 < 5.0.0"
+    }
+  ],
   "dependencies": [
-    {"name":"puppetlabs/puppet_enterprise","version_requirement":">=3.4.0"}
+    {"name": "puppetlabs/netdev_stdlib", "version_requirement": ">= 0.11.0"}
   ]
 }
