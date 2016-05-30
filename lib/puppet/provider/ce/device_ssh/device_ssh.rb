@@ -33,7 +33,7 @@ module Puppet
         @@command_ssh_api = nil
 
         def self.ssh_session
-          if nil == @@ssh_session && nil != @@ssh_instance.ssh_hostip && nil != @@ssh_instance.ssh_username && nil != @@ssh_instancessh_password
+          if nil == @@ssh_session && nil != @@ssh_instance.ssh_hostip && nil != @@ssh_instance.ssh_username && nil != @@ssh_instance.ssh_password
 
             ssh_session = Puppet::NetDev::CE::SshSession.new(@@ssh_instance.ssh_hostip, @@ssh_instance.ssh_username, @@ssh_instance.ssh_password)
             @@ssh_session = ssh_session.connect
