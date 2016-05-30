@@ -59,7 +59,7 @@ module Puppet
         end
 
         def self.netconf_instance(netconf_ipaddress, netconf_username, netconf_password)
-          @@netconf_instance = new(netconf_ipaddress, netconf_username, netconf_password)
+          @@netconf_instance ||= new(netconf_ipaddress, netconf_username, netconf_password)
         end
 
         def initialize(netconf_ipaddress, netconf_username, netconf_password)
