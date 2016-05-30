@@ -31,7 +31,7 @@ Puppet::Type.type(:network_command_ssh).provide(:ce, parent: Puppet::Provider::C
 
   def flush
     return unless exists?
-    Puppet::NetDev::CE::Device.command_ssh_api.command_ssh(resource)
+    Puppet::NetDev::CE::Device_ssh.command_ssh_api.command_ssh(resource)
   end
 
   def exists?
