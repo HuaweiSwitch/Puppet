@@ -1,3 +1,15 @@
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 # encoding: utf-8
 require 'net/netconf'
 require 'net/telnet'
@@ -10,112 +22,110 @@ module Puppet
     # CE namespace
     module CE
       class Device
-        attr_accessor :session
-        attr_accessor :telnet_session
-        attr_accessor :ssh_session
-        attr_accessor :interface_api
-        attr_accessor :l3_interface_api
-        attr_accessor :vlan_api
-        attr_accessor :user_api
-        attr_accessor :system_api
-        attr_accessor :trunk_api
-        attr_accessor :channel_api
-        attr_accessor :car_api
-        attr_accessor :diffserv_api
-        attr_accessor :vlan_batch_api
-
+        private_class_method :new
+        
         attr_accessor :netconf_hostip
         attr_accessor :netconf_username
         attr_accessor :netconf_password
+        
+        #@@telnet_session  = nil
+        #@@ssh_session     = nil
+        
+        @@session          = nil
+        @@netconf_instance = nil
+        @@interface_api    = nil
+        @@l3_interface_api = nil
+        @@vlan_api         = nil
+        @@user_api         = nil
+        @@system_api       = nil
+        @@trunk_api        = nil
+        @@channel_api      = nil
+        @@car_api          = nil
+        @@diffserv_api     = nil
+        @@vlan_batch_api   = nil
+
+
 
         def self.session
-          if nil == @session && nil != @netconf_hostip && nil != @netconf_username && nil != @netconf_password
+          if nil == @@session && nil != @@netconf_instance.netconf_hostip && nil != @@netconf_instance.netconf_username && nil != @@netconf_instance.netconf_password
 
-            ssh_session = Puppet::NetDev::CE::Session.new(@netconf_hostip, @netconf_username, @netconf_password)
-            @session = ssh_session.connect
+            ssh_session = Puppet::NetDev::CE::Session.new(@@netconf_instance.netconf_hostip, @@netconf_instance.netconf_username, @@netconf_instance.netconf_password)
+            @@session = ssh_session.connect
             puts 'create session in normal way'
-
-          # Below should be deleted, just for testing "puppet resource XXX" commands
-          elsif nil == @session && nil == @netconf_hostip && nil == @netconf_username && nil == @netconf_password
-            # ssh_session_back = Puppet::NetDev::CE::Session.new('10.136.68.123', 'rootDC', 'root_DC123')
-            # @@session = ssh_session_back.connect
-            puts 'create session not in normal way'
+            
           end
-          #
 
-          @session
+          @@session
         end
 
-        def self.set_netconf_ip(netconf_ipaddress)
-          @netconf_hostip = netconf_ipaddress
+        def self.netconf_instance(netconf_ipaddress, netconf_username, netconf_password)
+          @@netconf_instance = new(netconf_ipaddress, netconf_username, netconf_password)
         end
 
-        def self.set_netconf_username(netconf_username)
+        def initialize(netconf_ipaddress, netconf_username, netconf_password)
+          @netconf_hostip   = netconf_ipaddress
           @netconf_username = netconf_username
-        end
-
-        def self.set_netconf_password(netconf_password)
           @netconf_password = netconf_password
         end
 
         # create InterfaceApi instance
         def self.interface_api
-          @interface_api = InterfaceApi.new if nil == @interface_api
-          @interface_api
+          @@interface_api = InterfaceApi.new if nil == @@interface_api
+          @@interface_api
         end
 
         # create L3InterfaceApi instance
         def self.l3_interface_api
-          @l3_interface_api = L3InterfaceApi.new if nil == @l3_interface_api
-          @l3_interface_api
+          @@l3_interface_api = L3InterfaceApi.new if nil == @@l3_interface_api
+          @@l3_interface_api
         end
 
         # create VlanApi instance
         def self.vlan_api
-          @vlan_api = VlanApi.new if nil == @vlan_api
-          @vlan_api
+          @@vlan_api = VlanApi.new if nil == @@vlan_api
+          @@vlan_api
         end
 
         # create UserApi instance
         def self.user_api
-          @user_api = UserApi.new if nil == @user_api
-          @user_api
+          @@user_api = UserApi.new if nil == @@user_api
+          @@user_api
         end
 
         # create SystemApi instance
         def self.system_api
-          @system_api = SystemApi.new if nil == @system_api
-          @system_api
+          @@system_api = SystemApi.new if nil == @@system_api
+          @@system_api
         end
 
         # create TrunkApi instance
         def self.trunk_api
-          @trunk_api = TrunkApi.new if nil == @trunk_api
-          @trunk_api
+          @@trunk_api = TrunkApi.new if nil == @@trunk_api
+          @@trunk_api
         end
 
         # create ChannelApi instance
         def self.channel_api
-          @channel_api = ChannelApi.new if nil == @channel_api
-          @channel_api
+          @@channel_api = ChannelApi.new if nil == @@channel_api
+          @@channel_api
         end
 
         # create CarApi instance
         def self.car_api
-          @car_api = CarApi.new if nil == @car_api
-          @car_api
+          @@car_api = CarApi.new if nil == @@car_api
+          @@car_api
         end
 
         # create DiffervApi instance
         def self.diffserv_api
-          @diffserv_api = DiffervApi.new if nil == @diffserv_api
-          @diffserv_api
+          @@diffserv_api = DiffervApi.new if nil == @@diffserv_api
+          @@diffserv_api
         end
 
         # create VlanBatchApi instance
         def self.vlan_batch_api
-          @vlan_batch_api = VlanBatchApi.new if nil == @vlan_batch_api
-          @vlan_batch_api
+          @@vlan_batch_api = VlanBatchApi.new if nil == @@vlan_batch_api
+          @@vlan_batch_api
         end
     end
     end
