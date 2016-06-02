@@ -22,16 +22,15 @@ module Puppet
     # CE namespace
     module CE
       class Device
-        private_class_method :new
+
+        @@session          = nil 
+        @@telnet_session   = nil
+        @@ssh_session      = nil
         
-        attr_accessor :netconf_hostip
-        attr_accessor :netconf_username
-        attr_accessor :netconf_password
-        
-        #@@telnet_session  = nil
-        #@@ssh_session     = nil
-        
-        @@session          = nil
+        @@netconf_hostip   = nil
+        @@netconf_username = nil
+        @@netconf_password = nil
+
         @@netconf_instance = nil
         @@interface_api    = nil
         @@l3_interface_api = nil
@@ -44,12 +43,10 @@ module Puppet
         @@diffserv_api     = nil
         @@vlan_batch_api   = nil
 
-
-
         def self.session
-          if nil == @@session && nil != @@netconf_instance.netconf_hostip && nil != @@netconf_instance.netconf_username && nil != @@netconf_instance.netconf_password
+          if nil == @@session && nil != @@netconf_hostip && nil != @@netconf_username && nil != @@netconf_password
 
-            ssh_session = Puppet::NetDev::CE::Session.new(@@netconf_instance.netconf_hostip, @@netconf_instance.netconf_username, @@netconf_instance.netconf_password)
+            ssh_session = Puppet::NetDev::CE::Session.new(@@netconf_hostip, @@netconf_username, @@netconf_password)
             @@session = ssh_session.connect
             puts 'create session in normal way'
             
@@ -59,10 +56,6 @@ module Puppet
         end
 
         def self.netconf_instance(netconf_ipaddress, netconf_username, netconf_password)
-          @@netconf_instance ||= new(netconf_ipaddress, netconf_username, netconf_password)
-        end
-
-        def initialize(netconf_ipaddress, netconf_username, netconf_password)
           @netconf_hostip   = netconf_ipaddress
           @netconf_username = netconf_username
           @netconf_password = netconf_password
