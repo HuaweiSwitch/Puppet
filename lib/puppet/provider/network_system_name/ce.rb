@@ -32,6 +32,18 @@ Puppet::Type.type(:network_system_name).provide(:ce, parent: Puppet::Provider::C
     array
   end
 
+  def initialize(resources)
+    super(resources)
+  end
+
+  def self.prefetch(resources)
+    instances.each do |prov|
+      if resource = resources[prov.name]
+        resource.provider = prov
+      end
+    end
+  end
+
   def flush
     Puppet::NetDev::CE::Device.system_api.set_sysname(resource)
     systemname = Puppet::NetDev::CE::Device.system_api.get_sysname
