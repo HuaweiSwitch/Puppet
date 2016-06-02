@@ -22,20 +22,18 @@ module Puppet
     # CE namespace
     module CE
       class Device_tel
-        private_class_method :new
 
-        attr_accessor :telnet_hostip
-        attr_accessor :telnet_username
-        attr_accessor :telnet_password
-        
         @@telnet_session     = nil
-        @@tel_instance       = nil
         @@command_telnet_api = nil
-
+        
+        @@telnet_hostip      = nil
+        @@telnet_username    = nil
+        @@telnet_password    = nil
+        
         def self.telnet_session
-          if nil == @@telnet_session && nil != @@tel_instance.telnet_hostip && nil != @@tel_instance.telnet_username && nil != @@tel_instance.telnet_password
+          if nil == @@telnet_session && nil != @@telnet_hostip && nil != @@telnet_username && nil != @@telnet_password
            
-            telnet_session = Puppet::NetDev::CE::TelnetSession.new(@@tel_instance.telnet_hostip, @@tel_instance.telnet_username, @@tel_instance.telnet_password)
+            telnet_session   = Puppet::NetDev::CE::TelnetSession.new(@@telnet_hostip, @@telnet_username, @@telnet_password)
             @@telnet_session = telnet_session.connect
             puts 'create telnet session in normal way'
             
@@ -45,13 +43,9 @@ module Puppet
         end
 
         def self.tel_instance(telnet_ipaddress, telnet_username, telnet_password)
-          @@tel_instance ||= new(telnet_ipaddress, telnet_username, telnet_password)
-        end
-
-        def initialize(telnet_ipaddress, telnet_username, telnet_password)
-          @telnet_hostip   = telnet_ipaddress
-          @telnet_username = telnet_username
-          @telnet_password = telnet_password
+          @@telnet_hostip   = telnet_ipaddress
+          @@telnet_username = telnet_username
+          @@telnet_password = telnet_password
         end
 
         # create Command_telnetApi instance
@@ -61,7 +55,9 @@ module Puppet
           end
           @@command_telnet_api
         end
+        
       end
+      
     end
   end
 end
