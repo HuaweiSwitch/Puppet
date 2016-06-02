@@ -22,20 +22,18 @@ module Puppet
     # CE namespace
     module CE
       class Device_ssh
-        private_class_method :new
-        
-        attr_accessor :ssh_hostip
-        attr_accessor :ssh_username
-        attr_accessor :ssh_password
-        
+
         @@ssh_session     = nil
-        @@ssh_instance    = nil
         @@command_ssh_api = nil
-
+        
+        @@ssh_hostip      = nil
+        @@ssh_username    = nil
+        @@ssh_password    = nil
+        
         def self.ssh_session
-          if nil == @@ssh_session && nil != @@ssh_instance.ssh_hostip && nil != @@ssh_instance.ssh_username && nil != @@ssh_instance.ssh_password
+          if nil == @@ssh_session && nil != @@ssh_hostip && nil != @@ssh_username && nil != @@ssh_password
 
-            ssh_session = Puppet::NetDev::CE::SshSession.new(@@ssh_instance.ssh_hostip, @@ssh_instance.ssh_username, @@ssh_instance.ssh_password)
+            ssh_session   = Puppet::NetDev::CE::SshSession.new(@@ssh_hostip, @@ssh_username, @@ssh_password)
             @@ssh_session = ssh_session.connect
             puts 'create ssh session in normal way'
 
@@ -45,13 +43,9 @@ module Puppet
         end
 
         def self.ssh_instance(ssh_ipaddress, ssh_username, ssh_password)
-          @@ssh_instance ||= new(ssh_ipaddress, ssh_username, ssh_password)
-        end
-        
-        def initialize(ssh_ipaddress, ssh_username, ssh_password)
-          @ssh_hostip   = ssh_ipaddress
-          @ssh_username = ssh_username
-          @ssh_password = ssh_password
+          @@ssh_hostip   = ssh_ipaddress
+          @@ssh_username = ssh_username
+          @@ssh_password = ssh_password
         end
 
         # create Command_sshApi instance
