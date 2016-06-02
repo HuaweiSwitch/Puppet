@@ -31,7 +31,6 @@ module Puppet
         @@netconf_username = nil
         @@netconf_password = nil
 
-        @@netconf_instance = nil
         @@interface_api    = nil
         @@l3_interface_api = nil
         @@vlan_api         = nil
