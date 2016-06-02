@@ -56,9 +56,9 @@ module Puppet
         end
 
         def self.netconf_instance(netconf_ipaddress, netconf_username, netconf_password)
-          @netconf_hostip   = netconf_ipaddress
-          @netconf_username = netconf_username
-          @netconf_password = netconf_password
+          @@netconf_hostip   = netconf_ipaddress
+          @@netconf_username = netconf_username
+          @@netconf_password = netconf_password
         end
 
         # create InterfaceApi instance
