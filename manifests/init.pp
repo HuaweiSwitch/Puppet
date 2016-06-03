@@ -10,7 +10,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-class puppetlabs_netdev_stdlib_ce{
+class netdev_stdlib_ce{
 
 network_device{'CE-5850':
 name     => 'CE-5850',
