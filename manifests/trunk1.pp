@@ -10,7 +10,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-class puppetlabs_netdev_stdlib_ce::trunk1{
+class netdev_stdlib_ce::trunk1{
 
 
 network_trunk{'10GE1/0/9':
