@@ -85,8 +85,8 @@ node 'CE Switch'{
     }
 }  
 
-References
+References   
     [1] Puppet Enterprise   
-        [https://docs.puppetlabs.com/pe/latest/index.html](https://docs.puppetlabs.com/pe/latest/index.html)
+        [https://docs.puppetlabs.com/pe/latest/index.html](https://docs.puppetlabs.com/pe/latest/index.html)   
     [2] Based netdev module   
-        [https://forge.puppetlabs.com/puppetlabs/netdev_stdlib](https://forge.puppetlabs.com/puppetlabs/netdev_stdlib)
+        [https://forge.puppetlabs.com/puppetlabs/netdev_stdlib](https://forge.puppetlabs.com/puppetlabs/netdev_stdlib)   
