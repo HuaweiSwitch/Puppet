@@ -11,5 +11,5 @@
 # limitations under the License.
 
 class netdev_stdlib_ce{
-  include netdev_stdlib_ce::install
+
 }
