@@ -21,13 +21,13 @@ Puppet netdev module is the type specification for the Cloud Engine switches net
 
 - Circumstance instruction:  
 Puppet netdev module is suitable for Puppet agent 1.3.6 which runs in lxc environment contained by CE switch.
-Available Puppet master version is PE 2015.3. 
+The available Puppet master version is PE 2015.3. 
 
 - Main steps:  
-  - Install suitable puppet master.
-  - Install CE switch with firmware which included lxc environment.
-  - Install puppet agent in CE switch .
-  - Synchronize the puppet netdev module.
+  - Install suitable puppet master
+  - Install CE switch with firmware which included lxc environment
+  - Install puppet agent in CE switch
+  - Synchronize the puppet netdev module
 
 ## Example usage
 
@@ -35,7 +35,7 @@ An example of static manifest for CE switch is followed. The network functions i
 
 node 'CE Switch'{
     
-    network_device{ $switch model:
+	network_device{ $switch model:
 	name => $switch model,
 	ipaddress => $Ethernet ip,
 	username => $netconf username,
@@ -43,7 +43,7 @@ node 'CE Switch'{
 	}
 	
 	network_l3_interface{'Vlanif1':
-    ensure => present,
+	ensure => present,
 	name => 'Vlanif1',
 	description => 'VLAN 1 L3 interface',
 	enable => 'false',
@@ -56,7 +56,7 @@ node 'CE Switch'{
 	name => '10GE1/0/10',
 	encapsulation => dot1q,
 	mode => 'access',
-    untagged_vlan => 3, 
+	untagged_vlan => 3, 
 	require => Network_device[$switch model],
     }
 	
@@ -65,7 +65,7 @@ node 'CE Switch'{
 	name => 'Eth-Trunk1',   
 	id => '1',   
 	mode => disabled,   
-    interfaces => ['10GE1/0/6','10GE1/0/7'],   
+	interfaces => ['10GE1/0/6','10GE1/0/7'],   
 	require => Network_device[$switch model],
     }
 	
@@ -73,7 +73,7 @@ node 'CE Switch'{
 	ensure => present,
 	id => 200,
 	vlan_name => 'vlan200',
-    description => 'mkt', 
+	description => 'mkt', 
 	require => Network_device[$switch model],
 	}
     
@@ -82,14 +82,12 @@ node 'CE Switch'{
 	name => 'car1',
 	interface_name => '10GE1/0/3',
 	speed => '500',
-    require => Network_device[$switch model],
+	require => Network_device[$switch model],
     }
 }  
 
 ## References
-
 [1] Puppet Enterprise  
 - [https://docs.puppetlabs.com/pe/latest/index.html](https://docs.puppetlabs.com/pe/latest/index.html)  
-
 [2] Based netdev module  
 - [https://forge.puppetlabs.com/puppetlabs/netdev_stdlib](https://forge.puppetlabs.com/puppetlabs/netdev_stdlib)   
