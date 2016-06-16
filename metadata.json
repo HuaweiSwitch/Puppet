@@ -6,7 +6,7 @@
   "license": "Apache-2.0",
   "source": "https://github.com/HuaweiSwitch/Puppet",
   "project_page": "https://github.com/HuaweiSwitch",
-  "issues_url": null,
+  "issues_url": "https://github.com/HuaweiSwitch/Puppet/issues",
   "description": "Huawei Puppet types and providers for CE devices",
   "requirements": [
     {
