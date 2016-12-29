@@ -1,6 +1,6 @@
 {
   "name": "huawei-netdev_stdlib_ce",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Makyo",
   "summary": "Huawei Puppet types and providers for CE devices",
   "license": "Apache-2.0",
