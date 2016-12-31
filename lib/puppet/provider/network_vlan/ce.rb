@@ -78,3 +78,4 @@ Puppet::Type.type(:network_vlan).provide(:ce, parent: Puppet::Provider::CE) do
     @property_hash = { id: resource[:id], ensure: :absent }
   end
 end
+

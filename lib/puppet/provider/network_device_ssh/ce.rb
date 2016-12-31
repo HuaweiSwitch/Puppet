@@ -11,6 +11,7 @@
 # limitations under the License.
 
 # encoding: utf-8
+
 require 'puppet/provider/ce/device_ssh/device_ssh.rb'
 require 'puppet/provider/ce/api/apibase.rb'
 require 'puppet/provider/ce/session/session.rb'
@@ -28,3 +29,4 @@ Puppet::Type.type(:network_device_ssh).provide(:ce, parent: Puppet::Provider::CE
     Puppet::NetDev::CE::Device_ssh.ssh_instance(resource[:sship], resource[:sshuser], resource[:sshpass])
   end
 end
+

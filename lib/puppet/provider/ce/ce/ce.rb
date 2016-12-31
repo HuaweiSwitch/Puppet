@@ -27,3 +27,4 @@ class Puppet::Provider::CE < Puppet::Provider
     end
   end
 end
+

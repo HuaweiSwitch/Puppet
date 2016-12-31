@@ -46,16 +46,6 @@ Puppet::Type.type(:network_system_name).provide(:ce, parent: Puppet::Provider::C
 
   def flush
     Puppet::NetDev::CE::Device.system_api.set_sysname(resource)
-    systemname = Puppet::NetDev::CE::Device.system_api.get_sysname
-    update(systemname)
-  end
-
-  def update(propertys = [])
-    propertys.each do |property_hash|
-      if resource[:name] == property_hash[:name]
-        @property_hash = property_hash
-        break
-      end
-    end
   end
 end
+

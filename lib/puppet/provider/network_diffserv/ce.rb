@@ -11,6 +11,7 @@
 # limitations under the License.
 
 # encoding: utf-8
+
 require 'puppet/provider/ce/device/device.rb'
 require 'puppet/provider/ce/api/apibase.rb'
 require 'puppet/provider/ce/api/diffserv/diffserv_api.rb'
@@ -72,3 +73,4 @@ Puppet::Type.type(:network_diffserv).provide(:ce, parent: Puppet::Provider::CE) 
     @property_hash = { ensure: :absent }
   end
 end
+

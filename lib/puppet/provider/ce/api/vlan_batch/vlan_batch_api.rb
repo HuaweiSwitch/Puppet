@@ -106,28 +106,22 @@ module Puppet
             when 15
 
               vlan_bit[j] = 'F'
-      end
+            end
           end
 
           aa = vlan_bit.join
 
           if resource[:ensure] == :present
-
             create_vlan_batch_xml = '<rpc><execute-action xmlns="http://www.huawei.com/netconf/capability/base/1.0"><action><vlan xmlns="http://www.huawei.com/netconf/vrp" content-version="1.0" format-version="1.0"><shVlanBatchCrt><vlans>' + aa.to_s + ':' + aa.to_s + '</vlans></shVlanBatchCrt></vlan></action></execute-action></rpc>'
-
             session.rpc.do_config(create_vlan_batch_xml)
-
-             end
+          end
 
           if resource[:ensure] == :absent
-
             delete_vlan_batch_xml = '<rpc><execute-action xmlns="http://www.huawei.com/netconf/capability/base/1.0"><action><vlan xmlns="http://www.huawei.com/netconf/vrp" content-version="1.0" format-version="1.0"><shVlanBatchDel><vlans>' + aa.to_s + ':' + aa.to_s + '</vlans></shVlanBatchDel></vlan></action></execute-action></rpc>'
-
             session.rpc.do_config(delete_vlan_batch_xml)
-
-           end
+          end
         end
-        end
-        end
+      end
+    end
   end
 end

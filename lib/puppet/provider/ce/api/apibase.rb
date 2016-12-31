@@ -11,7 +11,6 @@
 # limitations under the License.
 
 # encoding: utf-8
-require 'net/netconf'
 
 # Puppet namespace
 module Puppet
@@ -27,3 +26,4 @@ module Puppet
     end
   end
 end
+

@@ -11,7 +11,8 @@
 # limitations under the License.
 
 # encoding: utf-8
-require 'puppet/provider/ce/device/device.rb'
+
+require 'puppet/provider/ce/device_tel/device_tel.rb'
 require 'puppet/provider/ce/api/apibase.rb'
 require 'puppet/provider/ce/api/command_telnet/command_telnet_api.rb'
 require 'puppet/provider/ce/session/session.rb'
@@ -46,3 +47,4 @@ Puppet::Type.type(:network_command_telnet).provide(:ce, parent: Puppet::Provider
     @property_hash = { ensure: :absent }
   end
 end
+

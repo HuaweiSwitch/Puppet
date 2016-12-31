@@ -11,9 +11,8 @@
 # limitations under the License.
 
 # encoding: utf-8
+
 require 'net/netconf'
-require 'net/telnet'
-require 'net/Stelnet-common'
 
 # puppet namespace
 module Puppet
@@ -24,8 +23,6 @@ module Puppet
       class Device
 
         @@session          = nil 
-        @@telnet_session   = nil
-        @@ssh_session      = nil
         
         @@netconf_hostip   = nil
         @@netconf_username = nil
@@ -41,14 +38,18 @@ module Puppet
         @@car_api          = nil
         @@diffserv_api     = nil
         @@vlan_batch_api   = nil
+        @@version_api      = nil
+        @@stack_status_api = nil
+        @@board_status_api = nil
+        @@power_api        = nil
+        @@fan_api          = nil
+        @@qos_queue_api    = nil
 
         def self.session
           if nil == @@session && nil != @@netconf_hostip && nil != @@netconf_username && nil != @@netconf_password
-
             ssh_session = Puppet::NetDev::CE::Session.new(@@netconf_hostip, @@netconf_username, @@netconf_password)
             @@session = ssh_session.connect
-            puts 'create session in normal way'
-            
+            puts 'create session in normal way'            
           end
 
           @@session
@@ -119,7 +120,44 @@ module Puppet
           @@vlan_batch_api = VlanBatchApi.new if nil == @@vlan_batch_api
           @@vlan_batch_api
         end
-    end
+
+        # create VersionApi instance
+        def self.version_api
+          @@version_api = VersionApi.new if nil == @@version_api
+          @@version_api
+        end
+
+        # create StackStatusApi instance
+        def self.stack_status_api
+          @@stack_status_api = StackStatusApi.new if nil == @@stack_status_api
+          @@stack_status_api
+        end
+
+        # create BoardStatusApi instance
+        def self.board_status_api
+          @@board_status_api = BoardStatusApi.new if nil == @@board_status_api
+          @@board_status_api
+        end
+
+        # create PowerApi instance
+        def self.power_api
+          @@power_api = PowerApi.new if nil == @@power_api
+          @@power_api
+        end
+
+        # create FanApi instance
+        def self.fan_api
+          @@fan_api = FanApi.new if nil == @@fan_api
+          @@fan_api
+        end
+
+        # create QosQueueApi instance
+        def self.qos_queue_api
+          @@qos_queue_api = QosQueueApi.new if nil == @@qos_queue_api
+          @@qos_queue_api
+        end
+      end
     end
   end
 end
+

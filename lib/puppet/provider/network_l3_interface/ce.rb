@@ -74,3 +74,4 @@ Puppet::Type.type(:network_l3_interface).provide(:ce, parent: Puppet::Provider::
     @property_hash = { ensure: :absent }
   end
 end
+

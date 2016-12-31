@@ -11,6 +11,7 @@
 # limitations under the License.
 
 # encoding: utf-8
+
 require 'puppet/provider/ce/device/device.rb'
 require 'puppet/provider/ce/api/apibase.rb'
 require 'puppet/provider/ce/api/port_channel/channel_api.rb'
@@ -72,3 +73,4 @@ Puppet::Type.type(:port_channel).provide(:ce, parent: Puppet::Provider::CE) do
     @property_hash = { id: resource[:id], ensure: :absent }
   end
 end
+

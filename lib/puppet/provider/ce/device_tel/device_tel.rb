@@ -11,9 +11,8 @@
 # limitations under the License.
 
 # encoding: utf-8
-require 'net/netconf'
+
 require 'net/telnet'
-require 'net/Stelnet-common'
 
 # puppet namespace
 module Puppet
@@ -31,12 +30,10 @@ module Puppet
         @@telnet_password    = nil
         
         def self.telnet_session
-          if nil == @@telnet_session && nil != @@telnet_hostip && nil != @@telnet_username && nil != @@telnet_password
-           
+          if nil == @@telnet_session && nil != @@telnet_hostip && nil != @@telnet_username && nil != @@telnet_password           
             telnet_session   = Puppet::NetDev::CE::TelnetSession.new(@@telnet_hostip, @@telnet_username, @@telnet_password)
             @@telnet_session = telnet_session.connect
-            puts 'create telnet session in normal way'
-            
+            puts 'create telnet session in normal way'            
           end
 
           @@telnet_session
@@ -54,10 +51,9 @@ module Puppet
             @@command_telnet_api = Command_telnetApi.new
           end
           @@command_telnet_api
-        end
-        
-      end
-      
+        end        
+      end      
     end
   end
 end
+

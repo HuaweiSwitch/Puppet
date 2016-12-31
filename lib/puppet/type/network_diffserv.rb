@@ -41,3 +41,4 @@ Puppet::Type.newtype(:network_diffserv) do
     end
   end
 end
+

@@ -41,3 +41,4 @@ Puppet::Type.newtype(:network_command_telnet) do
     end
   end
 end
+
