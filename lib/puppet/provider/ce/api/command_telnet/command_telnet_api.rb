@@ -14,6 +14,7 @@
 
 require 'net/telnet'
 require 'time'
+
 # puppet namespace
 module Puppet
   # NetDev namespace
@@ -43,3 +44,4 @@ module Puppet
     end
   end
 end
+

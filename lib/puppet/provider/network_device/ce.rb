@@ -11,6 +11,7 @@
 # limitations under the License.
 
 # encoding: utf-8
+
 require 'puppet/provider/ce/device/device.rb'
 require 'puppet/provider/ce/api/apibase.rb'
 require 'puppet/provider/ce/session/session.rb'
@@ -28,3 +29,4 @@ Puppet::Type.type(:network_device).provide(:ce, parent: Puppet::Provider::CE) do
     Puppet::NetDev::CE::Device.netconf_instance(resource[:ipaddress], resource[:username], resource[:password])
   end
 end
+

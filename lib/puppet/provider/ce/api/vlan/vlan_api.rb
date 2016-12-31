@@ -12,6 +12,7 @@
 
 # encoding: utf-8
 
+
 # puppet namespace
 module Puppet
   # NetDev namespace
@@ -23,6 +24,11 @@ module Puppet
           super()
         end
 
+        def do_config_vlan(xml_str)
+          rpc = Nokogiri::XML(xml_str).root
+          @trans.rpc_exec(rpc)
+        end
+
         def get_vlan
           vlan_array = []
           session = Puppet::NetDev::CE::Device.session
@@ -32,10 +38,10 @@ module Puppet
           vlan_elements = vlan_all.first_element_child.first_element_child
 
           vlan_elements.element_children.each do |vlan_elem|
-            vlan_doc = Nokogiri::XML(vlan_elem.to_s)
-            vlan_id = vlan_doc.xpath('/vlan/vlanId').text
-            vlan_name = vlan_doc.xpath('/vlan/vlanName').text
-            vlan_des = vlan_doc.xpath('/vlan/vlanDesc').text
+            vlan_doc   = Nokogiri::XML(vlan_elem.to_s)
+            vlan_id    = vlan_doc.xpath('/vlan/vlanId').text
+            vlan_name  = vlan_doc.xpath('/vlan/vlanName').text
+            vlan_des   = vlan_doc.xpath('/vlan/vlanDesc').text
 
             property_hash = { ensure: :present }
             property_hash[:id] = vlan_id
@@ -47,7 +53,7 @@ module Puppet
           end
 
           vlan_array
-           end
+        end
 
         def set_vlan(resource)
           session = Puppet::NetDev::CE::Device.session

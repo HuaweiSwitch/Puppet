@@ -73,10 +73,10 @@ module Puppet
           end
 
           set_interface_xml += '</interface></interfaces></ifm></config></edit-config></rpc>'
-
           session.rpc.do_config(set_interface_xml)
         end
-    end
+      end
     end
   end
 end
+

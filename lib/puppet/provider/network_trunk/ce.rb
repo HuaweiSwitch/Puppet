@@ -67,3 +67,4 @@ Puppet::Type.type(:network_trunk).provide(:ce, parent: Puppet::Provider::CE) do
   def destroy
   end
 end
+

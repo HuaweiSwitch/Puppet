@@ -11,6 +11,7 @@
 # limitations under the License.
 
 # encoding: utf-8
+
 require 'puppet/provider/ce/device_tel/device_tel.rb'
 require 'puppet/provider/ce/api/apibase.rb'
 require 'puppet/provider/ce/session/session.rb'
@@ -28,3 +29,4 @@ Puppet::Type.type(:network_device_tel).provide(:ce, parent: Puppet::Provider::CE
     Puppet::NetDev::CE::Device_tel.telnet_instance(resource[:telip], resource[:teluser], resource[:telpass])
   end
 end
+

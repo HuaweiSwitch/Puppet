@@ -53,3 +53,4 @@ Puppet::Type.newtype(:network_car) do
     end
   end
 end
+

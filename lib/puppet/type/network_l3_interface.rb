@@ -65,3 +65,4 @@ Puppet::Type.newtype(:network_l3_interface) do
     end
   end
 end
+

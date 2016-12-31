@@ -12,9 +12,9 @@
 
 # encoding: utf-8
 
-require 'net/telnet'
-require 'net/Stelnet-common'
+require 'net/ssh/telnet'
 require 'time'
+
 # puppet namespace
 module Puppet
   # NetDev namespace
@@ -35,11 +35,12 @@ module Puppet
 
           for i in 0..resource[:command].count - 1 do
             session.write(resource[:command][i] + "\n")
-            session.waitfor('Match' => /<>/, 'Timeout' => 5) { |c| myfile.puts c }
+            session.waitfor('Match' => /.+\z/) { |c| myfile.puts c }
           end
           myfile.close
-          end
+        end
       end
     end
   end
 end
+

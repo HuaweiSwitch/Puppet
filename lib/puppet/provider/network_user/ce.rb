@@ -61,3 +61,4 @@ Puppet::Type.type(:network_user).provide(:ce, parent: Puppet::Provider::CE) do
     @property_hash = { password: resource[:password], ensure: :absent }
   end
 end
+

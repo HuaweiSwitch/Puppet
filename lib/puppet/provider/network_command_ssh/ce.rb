@@ -11,7 +11,8 @@
 # limitations under the License.
 
 # encoding: utf-8
-require 'puppet/provider/ce/device/device.rb'
+
+require 'puppet/provider/ce/device_ssh/device_ssh.rb'
 require 'puppet/provider/ce/api/apibase.rb'
 require 'puppet/provider/ce/api/command_ssh/command_ssh_api.rb'
 require 'puppet/provider/ce/session/session.rb'
@@ -46,3 +47,4 @@ Puppet::Type.type(:network_command_ssh).provide(:ce, parent: Puppet::Provider::C
     @property_hash = { ensure: :absent }
   end
 end
+

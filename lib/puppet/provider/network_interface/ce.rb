@@ -11,6 +11,7 @@
 # limitations under the License.
 
 # encoding: utf-8
+
 require 'puppet/provider/ce/device/device.rb'
 require 'puppet/provider/ce/api/apibase.rb'
 require 'puppet/provider/ce/api/interface/interface_api.rb'
@@ -46,3 +47,4 @@ Puppet::Type.type(:network_interface).provide(:ce, parent: Puppet::Provider::CE)
     end
   end
 end
+

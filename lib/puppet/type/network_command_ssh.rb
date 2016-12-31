@@ -41,3 +41,4 @@ Puppet::Type.newtype(:network_command_ssh) do
     end
   end
 end
+

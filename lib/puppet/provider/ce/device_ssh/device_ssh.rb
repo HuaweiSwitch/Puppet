@@ -11,9 +11,8 @@
 # limitations under the License.
 
 # encoding: utf-8
-require 'net/netconf'
-require 'net/telnet'
-require 'net/Stelnet-common'
+
+require 'net/ssh/telnet'
 
 # puppet namespace
 module Puppet
@@ -32,11 +31,9 @@ module Puppet
         
         def self.ssh_session
           if nil == @@ssh_session && nil != @@ssh_hostip && nil != @@ssh_username && nil != @@ssh_password
-
             ssh_session   = Puppet::NetDev::CE::SshSession.new(@@ssh_hostip, @@ssh_username, @@ssh_password)
             @@ssh_session = ssh_session.connect
             puts 'create ssh session in normal way'
-
           end
 
           @@ssh_session
@@ -53,7 +50,8 @@ module Puppet
           @@command_ssh_api = Command_sshApi.new if nil == @@command_ssh_api
           @@command_ssh_api
         end
-    end
+      end
     end
   end
 end
+

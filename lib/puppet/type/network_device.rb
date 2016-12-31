@@ -41,3 +41,4 @@ Puppet::Type.newtype(:network_device) do
     newvalues(:true, :false)
   end
 end
+

@@ -11,9 +11,11 @@
 # limitations under the License.
 
 # encoding: utf-8
+
 require 'net/netconf'
 require 'net/telnet'
-require 'net/Stelnet-common'
+require 'net/ssh/telnet'
+
 # puppet namespace
 module Puppet
   # NetDev namespace
@@ -22,52 +24,54 @@ module Puppet
     module CE
       class Session
         def initialize(host, username, password)
-          @host = host
+          @host     = host
           @username = username
           @password = password
-          @session = nil
+          @session  = nil
         end
 
         def connect
-          login = { target: @host, username: @username, password: @password }
+          login    = { target: @host, username: @username, password: @password }
           @session = Netconf::SSH.new(login)
           @session.open
           @session
         end
-         end
+      end
 
       class TelnetSession
         def initialize(host, username, password)
-          @host = host
+          @host     = host
           @username = username
           @password = password
-          @telnet = nil
+          @telnet   = nil
         end
 
         def connect
-          @telnet = Net::Telnet.new('Host' => @host, 'Timeout' => 10, 'Prompt' => /C:.*>/)
+          @telnet = Net::Telnet.new('Host' => @host, 'Timeout' => 10, 'Prompt' => /.+\z/)
 
           sleep 3
           @telnet.write(@username + "\n")
           @telnet.write(@password + "\n")
           @telnet.write("n\n")
           @telnet
-           end
+        end
       end
+      
       class SshSession
         def initialize(host, username, password)
-          @host = host
+          @host     = host
           @username = username
           @password = password
-          @ssh = nil
+          @ssh      = nil
         end
 
         def connect
-          @para = { 'Host' => @host, 'Port' => 22, 'Username' => @username, 'Password' => @password, 'Timeout' => 30, 'Prompt' => /C:.*>/ }
-          @ssh = Net::SSH::Telnet.new(@para)
+          @para = { 'Host' => @host, 'Username' => @username, 'Password' => @password, 'Prompt' => /.+\z/ }
+          @ssh  = Net::SSH::Telnet.new(@para)
           @ssh
         end
-         end
+      end
     end
   end
 end
+

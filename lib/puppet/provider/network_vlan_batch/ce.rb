@@ -39,3 +39,4 @@ Puppet::Type.type(:network_vlan_batch).provide(:ce, parent: Puppet::Provider::CE
   def destroy
   end
 end
+
