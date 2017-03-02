@@ -76,7 +76,7 @@ module Puppet
         def create_vlan(resource)
           session = Puppet::NetDev::CE::Device.session
 
-          create_vlan_xml = '<rpc><edit-config><target><running/></target><default-operation>merge</default-operation><error-option>rollback-on-error</error-option><config><vlan xmlns="http://www.huawei.com/netconf/vrp" content-version="1.0" format-version="1.0"><vlans><vlan operation="create"><vlanId>' + (resource[:id]).to_s + '</vlanId><vlanName/><vlanDesc/><vlanType>common</vlanType><vlanif><cfgBand/><dampTime/></vlanif></vlan></vlans></vlan></config></edit-config></rpc>'
+          create_vlan_xml = '<rpc><edit-config><target><running/></target><default-operation>merge</default-operation><error-option>rollback-on-error</error-option><config><vlan xmlns="http://www.huawei.com/netconf/vrp" content-version="1.0" format-version="1.0"><vlans><vlan operation="create"><vlanId>' + (resource[:id]).to_s + '</vlanId><vlanName/><vlanDesc/><vlanType>common</vlanType></vlan></vlans></vlan></config></edit-config></rpc>'
 
           session.rpc.do_config(create_vlan_xml)
         end
