@@ -50,46 +50,46 @@ node 'CE Switch'{
 	}
 	
 	network_vlan{'vlan200':
-	ensure => present,
-	id => 200,
-	vlan_name => 'vlan200',
+	ensure      => present,
+	id          => 200,
+	vlan_name   => 'vlan200',
 	description => 'mkt vlan200', 
-	require => Network_device[$switch_model],
+	require     => Network_device[$switch_model],
 	}
 	
 	network_l3_interface{'Vlanif':
-	ensure => present,
-	name => 'Vlanif200',
+	ensure      => present,
+	name        => 'Vlanif200',
 	description => 'VLAN 200 L3 interface',
-	enable => 'true',
-	ipaddress => '192.168.10.1 255.255.255.0',
-	require => Network_device[$switch_model],
+	enable      => 'true',
+	ipaddress   => '192.168.10.1 255.255.255.0',
+	require     => Network_device[$switch_model],
 	}
 		
 	network_trunk{'10GE1/0/10':
-	ensure => present,
-	name => '10GE1/0/10',
+	ensure        => present,
+	name          => '10GE1/0/10',
 	encapsulation => dot1q,
-	mode => 'access',
+	mode          => 'access',
 	untagged_vlan => 3, 
-	require => Network_device[$switch model],
+	require       => Network_device[$switch model],
 	}
 	
 	port_channel{'Eth-Trunk1':
-	ensure => present,
-	name => 'Eth-Trunk1',   
-	id => '1',   
-	mode => disabled,   
+	ensure     => present,
+	name       => 'Eth-Trunk1',   
+	id         => '1',   
+	mode       => disabled,   
 	interfaces => ['10GE1/0/6','10GE1/0/7'],   
-	require => Network_device[$switch_model],
+	require    => Network_device[$switch_model],
 	}
 	
 	network_car{'car1':
-	ensure => present,
-	name => 'car1',
+	ensure         => present,
+	name           => 'car1',
 	interface_name => '10GE1/0/3',
-	speed => '500',
-	require => Network_device[$switch_model],
+	speed          => '500',
+	require        => Network_device[$switch_model],
 	}
 }  
 
