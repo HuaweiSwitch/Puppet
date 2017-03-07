@@ -24,11 +24,6 @@ module Puppet
           super()
         end
 
-        def do_config_vlan(xml_str)
-          rpc = Nokogiri::XML(xml_str).root
-          @trans.rpc_exec(rpc)
-        end
-
         def get_vlan
           vlan_array = []
           session = Puppet::NetDev::CE::Device.session
