@@ -12,7 +12,10 @@
 
 # encoding: utf-8
 
-require 'net/ssh/telnet'
+require 'net/netconf'
+require 'net/telnet'
+require 'net/Stelnet-common'
+
 
 # puppet namespace
 module Puppet
