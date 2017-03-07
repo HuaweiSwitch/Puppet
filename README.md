@@ -40,7 +40,7 @@ Before taking the Puppet tool to manage devices, three softwares should be insta
 
 An example of static manifest for CE switch is followed. The network functions is satisfied based on the assumed that Puppet netdev module is available.
 
-node 'CE Switch'{
+node 'CESwitch'{
     
 	network_device{ $switch_model:
 	name      => $switch-model,
