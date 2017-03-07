@@ -14,7 +14,7 @@
 
 require 'net/netconf'
 require 'net/telnet'
-require 'net/ssh/telnet'
+require 'net/Stelnet-common'
 
 # puppet namespace
 module Puppet
