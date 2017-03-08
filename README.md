@@ -43,7 +43,7 @@ An example of static manifest for CE switch is followed. The network functions i
 node 'CESwitch'{
     
 	network_device{ $switch_model:
-	name      => $switch-model,
+	name      => $switch_model,
 	ipaddress => $Ethernet_ip,
 	username  => $netconf_username,
 	password  => $netconf_password,
