@@ -72,7 +72,7 @@ node 'CESwitch'{
 	encapsulation => dot1q,
 	mode          => 'access',
 	untagged_vlan => 3, 
-	require       => Network_device[$switch model],
+	require       => Network_device[$switch_model],
 	}
 	
 	port_channel{'Eth-Trunk1':
