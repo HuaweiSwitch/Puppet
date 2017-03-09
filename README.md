@@ -94,7 +94,7 @@ node 'CESwitch' {
 	}
 	
 	#command mode by ssh
-	network_device_ssh {'switch_model':
+	network_device_ssh {$switch_model:
 	name      => $switch_model,
 	sship     => $Ethernet_ip,
 	sshuser   => $ssh_username,
@@ -105,7 +105,7 @@ node 'CESwitch' {
 	name     => 'create_vlan300',
 	ensure   => present,
 	command  => ["system","vlan 300","commit"],
-	require  => Network_device_ssh[$witch_model],
+	require  => Network_device_ssh[$switch_model],
 	}
 
 }  
