@@ -29,16 +29,17 @@ module Puppet
 
         def command_ssh(resource)
           session = Puppet::NetDev::CE::Device_ssh.ssh_session
-          myfile = File.open('/tmp/hello.txt', 'a')
-          t = Time.now
-          format = '%Y-%m-%d %H:%M:%S'
-          myfile.puts t.strftime(format)
+          #myfile = File.open('/tmp/hello.txt', 'a')
+          #t = Time.now
+          #format = '%Y-%m-%d %H:%M:%S'
+          #myfile.puts t.strftime(format)
 
           for i in 0..resource[:command].count - 1 do
             session.write(resource[:command][i] + "\n")
-            session.waitfor('Match' => /.+\z/) { |c| myfile.puts c }
+            #session.waitfor('Match' => /.+\z/) { |c| myfile.puts c }
+            session.waitfor('Match' => /.+\z/) {  }
           end
-          myfile.close
+          #myfile.close
         end
       end
     end
