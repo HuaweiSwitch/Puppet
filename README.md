@@ -40,16 +40,17 @@ Before taking the Puppet tool to manage devices, three softwares should be insta
 
 An example of static manifest for CE switch is followed. The network functions is satisfied based on the assumed that Puppet netdev module is available.
 
-node 'CESwitch'{
+node 'CESwitch' {
     
-	network_device{ $switch_model:
+	#netconf mode
+	network_device { $switch_model:
 	name      => $switch_model,
 	ipaddress => $Ethernet_ip,
 	username  => $netconf_username,
 	password  => $netconf_password,
 	}
 	
-	network_vlan{'vlan200':
+	network_vlan {'vlan200':
 	ensure      => present,
 	id          => 200,
 	vlan_name   => 'vlan200',
@@ -57,7 +58,7 @@ node 'CESwitch'{
 	require     => Network_device[$switch_model],
 	}
 	
-	network_l3_interface{'Vlanif':
+	network_l3_interface {'Vlanif':
 	ensure      => present,
 	name        => 'Vlanif200',
 	description => 'VLAN 200 L3 interface',
@@ -66,16 +67,16 @@ node 'CESwitch'{
 	require     => Network_device[$switch_model],
 	}
 		
-	network_trunk{'10GE1/0/10':
+	network_trunk {'10GE1/0/10':
 	ensure        => present,
 	name          => '10GE1/0/10',
 	encapsulation => dot1q,
 	mode          => 'access',
-	untagged_vlan => 3, 
+	untagged_vlan => 200, 
 	require       => Network_device[$switch_model],
 	}
 	
-	port_channel{'Eth-Trunk1':
+	port_channel {'Eth-Trunk1':
 	ensure     => present,
 	name       => 'Eth-Trunk1',   
 	id         => '1',   
@@ -84,13 +85,29 @@ node 'CESwitch'{
 	require    => Network_device[$switch_model],
 	}
 	
-	network_car{'car1':
+	network_qos_queue {'queue2':
 	ensure         => present,
-	name           => 'car1',
 	interface_name => '10GE1/0/3',
-	speed          => '500',
+	queue_id       => 2,
+	queue_cir      => 100,
 	require        => Network_device[$switch_model],
 	}
+	
+	#command mode by ssh
+	network_device_ssh {'switch_model':
+	name      => $switch_model,
+	sship     => $Ethernet_ip,
+	sshuser   => $ssh_username,
+	sshpass   => $ssh_password,
+	}
+	
+	network_command_ssh {'create_vlan300':
+	name     => 'create_vlan300',
+	ensure   => present,
+	command  => ["system","vlan 300","commit"],
+	require  => Network_device_ssh[$witch_model],
+	}
+
 }  
 
 ## References
