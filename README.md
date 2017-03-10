@@ -29,9 +29,9 @@ Puppet netdev module is the type specification for the Cloud Engine switches net
 
 - Circumstance instruction:  
 Before taking the Puppet tool to manage devices, three softwares should be installed rightly, including Puppet module,Puppet master and Puppet agent. Puppet module must be installed on the Puppet master server, which can be downloaded from the [Puppetforge](https://forge.puppet.com/), including netdev_stdlib. At the same time, the netconf ruby gem is a required component of the netdev module, which can be downloaded from the [Rubygem](https://rubygems.org/). The tarball of Puppet master and agent can be download from [PuppetEnterprise:Download](https://puppet.com/download-puppet-enterprise). After Puppet agent has been installed which the netconf-0.4.3 and net-ssh-2.9.2 would be installed at the same time, files in patchfiles directory must be used as below:   
-  - copy session.rb to the `/opt/puppetlabs/puppet/lib/ruby/gems/2.1.0/gems/net-ssh-2.9.2/lib/net/ssh/connection` directory
-  - copy Stelnet-common.rb to the `/opt/puppetlabs/puppet/lib/ruby/gems/2.1.0/gems/net-ssh-2.9.2/lib/net` directory
-  - copy rpc_std.rb, ssh.rb and transport.rb to the `/opt/puppetlabs/puppet/lib/ruby/gems/2.1.0/gems/net-netconf-0.4.3/lib/net/netconf` directory
+  - copy session.rb into the `/opt/puppetlabs/puppet/lib/ruby/gems/2.1.0/gems/net-ssh-2.9.2/lib/net/ssh/connection` directory
+  - copy Stelnet-common.rb into the `/opt/puppetlabs/puppet/lib/ruby/gems/2.1.0/gems/net-ssh-2.9.2/lib/net` directory
+  - copy rpc_std.rb, ssh.rb and transport.rb into the `/opt/puppetlabs/puppet/lib/ruby/gems/2.1.0/gems/net-netconf-0.4.3/lib/net/netconf` directory
 
 - Main steps:  
   - [Install Puppet master](https://docs.puppet.com/pe/latest/quick_start_install_mono.html)
